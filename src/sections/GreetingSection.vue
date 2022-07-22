@@ -1,0 +1,64 @@
+<template>
+  <section class="site_section">
+    <div class="wrapper column justify-center items-center full-height text-center">
+      <h4 class="site_domain">VELOSTAT.RU</h4>
+      <h2>
+        {{ $t("greeting.bikeSharing") }}
+        <span class="city_title">
+          {{ $tc("cities.moscow", 2) }}
+        </span>
+        {{ $t("greeting.inNumbers") }}
+      </h2>
+      <h4>
+        {{ $t("greeting.bikesTaken") }}
+        <span class="highlight">
+          {{ bikesTaken }}
+        </span>
+        {{ $tc("bike", bikesTaken) }}
+      </h4>
+    </div>
+  </section>
+</template>
+
+<script>
+export default {
+  name: "GreetingSection",
+  data() {
+    return {
+      bikesTaken: 31
+    };
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+.site_section {
+  background-image: url(https://thumb.tildacdn.com/tild3261-3031-4432-b136-373330323635/-/format/webp/DSCF7927-2.jpg);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.title {
+  font-weight: 400;
+}
+
+.wrapper {
+  position: relative;
+  color: $secondary;
+}
+
+.site_domain {
+  color: $highlight;
+}
+</style>
