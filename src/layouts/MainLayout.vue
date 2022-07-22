@@ -1,7 +1,7 @@
 <template>
   <q-layout>
     <GreetingSection />
-    <WhySection/>
+    <WhySection />
   </q-layout>
 </template>
 
@@ -14,7 +14,7 @@ export default defineComponent({
   name: "MainLayout",
   components: {
     GreetingSection,
-    WhySection,
+    WhySection
   }
 });
 </script>

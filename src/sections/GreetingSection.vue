@@ -1,16 +1,16 @@
 <template>
-  <section class="site_section">
-    <div class="wrapper column justify-center items-center full-height text-center">
+  <section class="site_section ">
+    <div class="wrapper limiter column justify-center items-center full-height text-center">
       <h4 class="site_domain">VELOSTAT.RU</h4>
-      <h2>
-        {{ $t("greeting.bikeSharing") }}
+      <h2 class="title">
+        {{ $t("greetingLayout.bikeSharing") }}
         <span class="city_title">
           {{ $tc("cities.moscow", 2) }}
         </span>
-        {{ $t("greeting.inNumbers") }}
+        {{ $t("greetingLayout.inNumbers") }}
       </h2>
-      <h4>
-        {{ $t("greeting.bikesTaken") }}
+      <h4 class="bikes_taken">
+        {{ $t("greetingLayout.bikesTaken") }}
         <span class="highlight">
           {{ bikesTaken }}
         </span>
@@ -50,7 +50,9 @@ export default {
 }
 
 .title {
-  font-weight: 400;
+  //font-weight: 400;
+  margin-top: 80px;
+  margin-bottom: 25px;
 }
 
 .wrapper {
@@ -60,5 +62,8 @@ export default {
 
 .site_domain {
   color: $highlight;
+}
+.bikes_taken{
+  font-size: 40px;
 }
 </style>
