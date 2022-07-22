@@ -8,16 +8,25 @@ a {
   text-decoration: none;
   color: black;
 }
-.highlight{
+
+.highlight {
   color: $highlight;
 }
-.site_section{
+
+.site_section {
   width: 100%;
   height: 100vh;
 }
 
-.limiter{
+.limiter {
   max-width: 1440px;
   width: 100%;
   margin: 0 auto;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.half_wrapper {
+  width: calc(50% - 75px);
+  height: 100%;
 }

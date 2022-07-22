@@ -3,14 +3,14 @@
     <div class="wrapper limiter column justify-center items-center full-height text-center">
       <h4 class="site_domain">VELOSTAT.RU</h4>
       <h2 class="title">
-        {{ $t("greetingLayout.bikeSharing") }}
+        {{ $t("greetingSection.bikeSharing") }}
         <span class="city_title">
           {{ $tc("cities.moscow", 2) }}
         </span>
-        {{ $t("greetingLayout.inNumbers") }}
+        {{ $t("greetingSection.inNumbers") }}
       </h2>
       <h4 class="bikes_taken">
-        {{ $t("greetingLayout.bikesTaken") }}
+        {{ $t("greetingSection.bikesTaken") }}
         <span class="highlight">
           {{ bikesTaken }}
         </span>

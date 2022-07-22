@@ -1,14 +1,17 @@
 export default {
   failed: "Action failed",
   success: "Action was successful",
-  greetingLayout: {
+  greetingSection: {
     bikeSharing: "Велопрокат",
     inNumbers: "в цифрах",
     bikesTaken: "в этом году взяли"
   },
-  questionLayout: {
+  questionSection: {
     question: 'Зачем собирать данные?',
     text: 'За последние годы в Москве появилась одна из крупнейших в мире сетей шеринга велосипедов. Каждое лето мы можем видеть, как все большее число людей пользуется услугами велопроката. Все это генерирует огромное количество данных, но без должного подхода к ним они бесполезны.',
+  },
+  mapSection: {
+    title: 'Карта проката велосипедов',
   },
   cities: {
     moscow: "Москва | Москва | Москвы",

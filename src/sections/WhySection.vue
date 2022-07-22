@@ -1,19 +1,17 @@
 <template>
   <section class="site_section">
     <div class="container limiter flex justify-between">
-      <div class="wrapper">
+      <div class="half_wrapper container__half_wrapper">
         <h2 class="question highlight text-centegr">
-          {{ $t("questionLayout.question") }}
+          {{ $t("questionSection.question") }}
         </h2>
       </div>
-      <div class="wrapper ">
+      <div class="half_wrapper container__half_wrapper">
         <h4 class="text-justify">
-          {{ $t("questionLayout.text") }}
+          {{ $t("questionSection.text") }}
         </h4>
       </div>
     </div>
-
-
   </section>
 </template>
 
@@ -32,10 +30,7 @@ export default {
   height: 100%;
 }
 
-.wrapper {
-  width: calc(50% - 75px);
-  height: 100%;
-  text-align: center;
+.container__half_wrapper {
   display: flex;
   align-items: center;
 }
