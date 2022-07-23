@@ -1,3 +1,13 @@
+.text-highlight {
+  color: #54DEFD !important;
+}
 
+.bg-highlight {
+  background: #54DEFD !important;
+}
 
-/*# sourceMappingURL=quasar.variables.css.Map */
+.bg-darkHighlight {
+  background: #0C98BB !important;
+}
+
+/*# sourceMappingURL=quasar.variables.css.map */

@@ -1,5 +1,16 @@
 $primary: #000000;
 $secondary: #ffffff;
 $highlight: #54DEFD;
+$darkHighlight: #0C98BB;
 
 $section-grey: #F8F8F8;
+
+.text-highlight {
+  color: $highlight !important;
+}
+.bg-highlight{
+  background: $highlight !important;
+}
+.bg-darkHighlight{
+  background: $darkHighlight !important;
+}
