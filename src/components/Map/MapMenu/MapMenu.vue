@@ -5,27 +5,42 @@
     <p>{{ $t("mapMenu.date") }}</p>
     <DateSelector />
     <p>{{ $t("mapMenu.show") }}</p>
-    <q-btn-group spread>
-      <q-btn></q-btn>
-      <q-separator/>
-      <q-btn></q-btn>
-    </q-btn-group>
-    <q-toggle
-      :label="$t('mapMenu.routes')"
-      left-label
-    />
+    <SwitchButtons v-model="rentShowSettings"/>
+    <div class="">
+      <q-toggle
+        v-model="showRoutes"
+        :label="$t('mapMenu.routes')"
+        left-label
+        color="highlight"
+
+      />
+    </div>
+
   </nav>
 </template>
 
 <script>
 import SelectComponent from "components/Map/MapMenu/SelectComponent/SelectComponent";
 import DateSelector from "components/Map/MapMenu/DateSelector/DateSelector";
+import SwitchButtons from "components/Map/SwitchButtons/SwitchButtons";
 
 export default {
   name: "mapMenu",
   components: {
     SelectComponent,
-    DateSelector
+    DateSelector,
+    SwitchButtons
+  },
+  data() {
+    return {
+
+      showRoutes: false,
+      rentShowSettings: {
+        start: true,
+        end: true,
+      },
+
+    };
   }
 };
 </script>
@@ -36,12 +51,19 @@ export default {
   width: 100%;
   //height: 100%;
   //background-color: red;
-  background-color: rgba(0, 0, 0, 0.5);
+  //background-color: rgba(0, 0, 0, 0.5);
   border-radius: 12px;
   padding: 12px;
   color: $secondary;
   position: absolute;
-  bottom:0;
-  left: 0;
+  bottom: 15px;
+  left: 15px;
+  background: rgba( 0, 0, 0, 0.4 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 4px );
+  -webkit-backdrop-filter: blur( 4px );
+  //border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
+
 </style>

@@ -20,6 +20,8 @@ export default {
     date: "Дата",
     show: "Отображать",
     routes: 'Маршруты поездок',
+    startRent: 'Начало проката',
+    endRent: 'Конец проката',
   },
   cities: {
     moscow: "Москва | Москва | Москвы",
