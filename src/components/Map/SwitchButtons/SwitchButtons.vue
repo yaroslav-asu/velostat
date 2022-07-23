@@ -35,7 +35,7 @@ export default {
       switchButtonColorScheme: {
         on: {
           bgColor: "highlight",
-          textColor: "black"
+          textColor: "white"
         },
         off: {
           bgColor: "white",

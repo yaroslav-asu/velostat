@@ -1,11 +1,14 @@
 <template>
   <nav class="map_menu column">
-    <p>{{ $t("mapMenu.city") }}</p>
+    <p class="map_menu__title map_menu--first">{{ $t("mapMenu.city") }}</p>
     <SelectComponent />
-    <p>{{ $t("mapMenu.date") }}</p>
+    <p class="map_menu__title">{{ $t("mapMenu.date") }}</p>
     <DateSelector />
-    <p>{{ $t("mapMenu.show") }}</p>
-    <SwitchButtons v-model="rentShowSettings"/>
+    <p class="map_menu__title">{{ $t("mapMenu.show") }}</p>
+    <SwitchButtons
+      v-model="rentShowSettings"
+      class="map_menu__switch_buttons"
+    />
     <div class="">
       <q-toggle
         v-model="showRoutes"
@@ -64,6 +67,15 @@ export default {
   -webkit-backdrop-filter: blur( 4px );
   //border-radius: 10px;
   border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+.map_menu--first{
+  margin-top: 0 !important;
+}
+.map_menu__title{
+  margin: 12px 0 6px 0;
+}
+.map_menu__switch_buttons{
+  margin-bottom: 2px;
 }
 
 </style>

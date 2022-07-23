@@ -8,6 +8,7 @@
     borderless
     color="primary"
     :options="options"
+    options-dense
   />
 </template>
 
@@ -20,7 +21,7 @@ export default {
     return {
       model: ref(null),
       options: [
-        "Google", "Facebook", "Twitter", "Apple", "Oracle"
+        "Google", "Facebook", "Twitter", "Apple"
       ]
     };
   }
@@ -32,7 +33,7 @@ export default {
   .q-field__inner {
     .q-field__control {
       padding: 0 15px 0 15px;
-      border-radius: 10px;
+      border-radius: 7px;
       min-height: 25px;
 
       .q-field--dense {
