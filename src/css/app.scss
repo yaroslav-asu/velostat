@@ -33,3 +33,13 @@ p{
   width: calc(50% - 75px);
   height: 100%;
 }
+
+.minimized_button{
+  min-height: auto;
+  line-height: normal;
+  padding: 0;
+  flex-wrap: nowrap;
+  .q-btn__content{
+    line-height: normal;
+  }
+}

@@ -9,9 +9,24 @@
         class="date_calendar"
         ref="dateCalendar"
       >
-        <q-btn-group class="row items-center justify-between" spread>
-          <q-btn :label="$t('mapMenu.thisYear')" color="primary" flat @click="setCurrentYear" />
-          <q-btn :label="$t('mapMenu.thisMonth')" color="primary" flat @click="setCurrentMonth" />
+        <q-btn-group class="btns_group row items-center justify-between" spread>
+          <q-btn
+            :label="$t('mapMenu.thisYear')"
+            color="secondary"
+            text-color="primary"
+            no-caps
+            @click="setCurrentYear"
+            class="select_time_btn minimized_button"
+          />
+          <q-separator vertical/>
+          <q-btn
+            :label="$t('mapMenu.thisMonth')"
+            color="secondary"
+            text-color="primary"
+            no-caps
+            @click="setCurrentMonth"
+            class="select_time_btn minimized_button"
+          />
         </q-btn-group>
       </q-date>
     </q-popup-proxy>
@@ -31,14 +46,15 @@ export default {
     };
   },
   methods: {
-    setCurrentYear() {
+    async setCurrentYear() {
       let today = new Date();
 
       this.date = {
         from: `${today.getFullYear()}/01/01`,
         to: `${today.getFullYear()}/12/31`
       };
-      // this.$refs.dateCalendar.setCalendarTo(today.getFullYear(), 11)
+      await this.$nextTick()
+      this.$refs.dateCalendar.setCalendarTo(today.getFullYear(), 12)
     },
     setCurrentMonth() {
       let today = new Date();
@@ -51,11 +67,6 @@ export default {
         from: `${today.getFullYear()}/${thisMonth}/01`,
         to: `${today.getFullYear()}/${thisMonth}/${lastMonthDay}`
       };
-      console.log({
-          from: `${today.getFullYear()}/${thisMonth}/01`,
-          to: `${today.getFullYear()}/${thisMonth}/${lastMonthDay}`
-        }
-      );
     }
   },
   watch: {
@@ -68,8 +79,17 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
 
+.btns_group{
+  .select_time_btn {
+    height: 25px;
+  }
+  border-radius: 7px;
+}
+</style>
 <style lang="scss">
+
 .button_date_selector {
   padding: 0;
   width: 25px;
@@ -85,9 +105,7 @@ export default {
       font-size: 15px;
     }
   }
-
 }
-
 .date_calendar {
   .q-date__main {
     .q-date__content {

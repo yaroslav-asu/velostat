@@ -1,5 +1,5 @@
 <template>
-  <q-btn-group spread>
+  <q-btn-group class="switch_buttons" spread>
     <SwitchButton
       v-model="state.start"
       class="btn-group__switch_button"
@@ -68,9 +68,13 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.switch_buttons{
+  border-radius: 7px;
 .btn-group__switch_button{
   height: 25px;
-  border-radius: 7px;
+
 }
+}
+
 </style>

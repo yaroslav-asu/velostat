@@ -1,6 +1,6 @@
 <template>
   <q-btn
-    class="switch_button"
+    class="switch_button minimized_button"
     @click="state = !state"
     :color="currentColor"
     :text-color="currentTextColor"
@@ -10,7 +10,6 @@
     :dense="dense"
     :disable="disable"
   >
-
   </q-btn>
 </template>
 
@@ -31,13 +30,10 @@ export default {
         }
       }
     },
-    defaultState: {
-      default: false,
-    },
     dense: {},
     icon: {},
     modelValue: {
-      required: true
+      default: false,
     },
     disable: {
       default: false,
@@ -64,19 +60,9 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .switch_button{
   transition: background-color .2s ease, color .2s ease;
-  min-height: auto;
-  line-height: normal;
-  padding: 0;
-  flex-wrap: nowrap;
-  .q-btn__content{
-    line-height: normal;
-    .block{
-
-    }
-  }
 }
 
 </style>

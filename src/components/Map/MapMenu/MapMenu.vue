@@ -1,13 +1,13 @@
 <template>
   <nav class="map_menu column">
-    <p class="map_menu__title map_menu--first">{{ $t("mapMenu.city") }}</p>
+    <p class="map_menu__title map_menu--first mb mt">{{ $t("mapMenu.city") }}</p>
     <SelectComponent />
-    <p class="map_menu__title">{{ $t("mapMenu.date") }}</p>
+    <p class="map_menu__title mb mt">{{ $t("mapMenu.date") }}</p>
     <DateSelector />
-    <p class="map_menu__title">{{ $t("mapMenu.show") }}</p>
+    <p class="map_menu__title mb mt">{{ $t("mapMenu.show") }}</p>
     <SwitchButtons
       v-model="rentShowSettings"
-      class="map_menu__switch_buttons"
+      class="map_menu__switch_buttons q-mb-md"
     />
     <div class="">
       <q-toggle
@@ -15,7 +15,7 @@
         :label="$t('mapMenu.routes')"
         left-label
         color="highlight"
-
+        dense
       />
     </div>
 
@@ -52,9 +52,6 @@ export default {
 .map_menu {
   max-width: 400px;
   width: 100%;
-  //height: 100%;
-  //background-color: red;
-  //background-color: rgba(0, 0, 0, 0.5);
   border-radius: 12px;
   padding: 12px;
   color: $secondary;
@@ -65,7 +62,6 @@ export default {
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
   backdrop-filter: blur( 4px );
   -webkit-backdrop-filter: blur( 4px );
-  //border-radius: 10px;
   border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 .map_menu--first{
@@ -74,8 +70,11 @@ export default {
 .map_menu__title{
   margin: 12px 0 6px 0;
 }
-.map_menu__switch_buttons{
-  margin-bottom: 2px;
+.mt{
+  margin-top: 12px;
+}
+.mb{
+  margin-bottom: 6px;
 }
 
 </style>
