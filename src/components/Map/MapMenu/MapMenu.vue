@@ -28,7 +28,7 @@ import DateSelector from "components/Map/MapMenu/DateSelector/DateSelector";
 import SwitchButtons from "components/Map/SwitchButtons/SwitchButtons";
 
 export default {
-  name: "mapMenu",
+  name: "MapMenu",
   components: {
     SelectComponent,
     DateSelector,
@@ -59,7 +59,7 @@ export default {
   bottom: 15px;
   left: 15px;
   background: rgba( 0, 0, 0, 0.4 );
-  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   backdrop-filter: blur( 4px );
   -webkit-backdrop-filter: blur( 4px );
   border: 1px solid rgba( 255, 255, 255, 0.18 );
