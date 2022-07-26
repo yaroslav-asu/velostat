@@ -1,28 +1,47 @@
 <template>
   <section class="site_section flex justify-between">
-    <div class="half_wrapper site_section__half_wrapper">
-
-    </div>
-    <div class="half_wrapper site_section__half_wrapper">
-      <h2 class="highlight">
-        {{ $t("mapSection.title") }}
-      </h2>
+    <div class="limiter flex justify-between">
+      <div class="half_wrapper site_section__half_wrapper">
+        <ResizableComponent
+          class="half_wrapper__resizable_component"
+          :resizable-styles="{borderRadius: '20px'}"
+        >
+          <MapComponent/>
+        </ResizableComponent>
+      </div>
+      <div class="half_wrapper site_section__half_wrapper">
+        <h2 class="highlight">
+          {{ $t("mapSection.title") }}
+        </h2>
+      </div>
     </div>
   </section>
 </template>
 
 <script>
+import MapComponent from "components/Core/Map/MapComponent";
+import ResizableComponent from "components/Core/Resizable/ResizableComponent";
+
 export default {
-  name: "MapSection"
+  name: "MapSection",
+  components: {
+    ResizableComponent,
+    MapComponent,
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-.site_section__half_wrapper{
+.site_section__half_wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: center;
+  align-items: center;
   text-align: center;
+  border-radius: 20px;
+}
+.half_wrapper__resizable_component{
+  max-width: 560px;
+  max-height: 686px;
 }
 </style>

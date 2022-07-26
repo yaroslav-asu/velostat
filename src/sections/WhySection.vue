@@ -1,6 +1,6 @@
 <template>
   <section class="site_section">
-    <div class="container limiter flex justify-between">
+    <div class=" container limiter flex justify-between">
       <div class="half_wrapper container__half_wrapper">
         <h2 class="question highlight text-centegr">
           {{ $t("questionSection.question") }}

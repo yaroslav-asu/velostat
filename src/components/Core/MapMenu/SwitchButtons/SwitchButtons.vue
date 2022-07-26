@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import SwitchButton from "components/Core/SwitchButton/SwitchButton";
+import SwitchButton from "components/Core/MapMenu/SwitchButtons/SwitchButton/SwitchButton";
 export default {
   name: "SwitchButtons",
   components: {

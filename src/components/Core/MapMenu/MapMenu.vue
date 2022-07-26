@@ -23,9 +23,9 @@
 </template>
 
 <script>
-import SelectComponent from "components/Map/MapMenu/SelectComponent/SelectComponent";
-import DateSelector from "components/Map/MapMenu/DateSelector/DateSelector";
-import SwitchButtons from "components/Map/SwitchButtons/SwitchButtons";
+import SelectComponent from "components/Core/MapMenu/SelectComponent/SelectComponent";
+import DateSelector from "components/Core/MapMenu/DateSelector/DateSelector";
+import SwitchButtons from "components/Core/MapMenu/SwitchButtons/SwitchButtons";
 
 export default {
   name: "MapMenu",
@@ -36,7 +36,6 @@ export default {
   },
   data() {
     return {
-
       showRoutes: false,
       rentShowSettings: {
         start: true,

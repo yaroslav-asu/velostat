@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import DateInput from "components/Map/MapMenu/DateInput/DateInput";
-import ButtonDateSelector from "components/Map/MapMenu/ButtonDateSelector/ButtonDateSelector";
+import DateInput from "components/Core/MapMenu/DateInput/DateInput";
+import ButtonDateSelector from "components/Core/MapMenu/ButtonDateSelector/ButtonDateSelector";
 import { toRuFormat, toEnFormat } from "src/js/DatesFormatting";
 
 export default {
