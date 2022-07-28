@@ -33,7 +33,6 @@ export default {
     this.resizableSize = this.$refs.resizableWrapper.getBoundingClientRect();
     this.$refs.resizable.style.width = this.resizableSize.width + "px";
     this.$refs.resizable.style.height = this.resizableSize.height + "px";
-
   },
   data() {
     return {
@@ -66,6 +65,8 @@ export default {
         this.$refs.resizable.style.top = `0`;
         this.$refs.resizable.style.left = `0`;
       }, this.animationDuration);
+
+      document.body.style.overflow = 'hidden'
     },
     close() {
       let parentPos = this.$refs.resizableWrapper.getBoundingClientRect();
@@ -75,8 +76,6 @@ export default {
 
       setTimeout(() => {
         this.startTransition();
-        // this.$refs.resizable.style.width = `100px`;
-        // this.$refs.resizable.style.height = `100px`;
         this.$refs.resizable.style.width = this.resizableSize.width + "px";
         this.$refs.resizable.style.height = this.resizableSize.height + "px";
         this.$refs.resizable.style.top = `${window.scrollY + parentPos.top}px`;
@@ -88,7 +87,10 @@ export default {
         this.$refs.resizable.style.left = "";
         this.$refs.resizable.style.top = "";
       }, this.animationDuration);
-    }
+
+      document.body.style.overflow = 'visible'
+    },
+
   },
   computed: {
     iconName() {
@@ -97,14 +99,19 @@ export default {
   },
   watch: {
     isFullscreen() {
+      this.$emit('startResizing')
+
       if (this.isFullscreen) {
         this.open();
       } else {
         this.close();
       }
+
       setTimeout(() => {
         this.$refs.resizable.style.transition = "";
+        this.$emit('endResizing')
       }, this.animationDuration);
+      this.$emit('update:modelValue', this.isFullscreen);
     }
   }
 };
@@ -112,6 +119,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 
 .resizable_wrapper {
   width: 100%;
@@ -130,7 +138,8 @@ export default {
       font-size: 35px;
     }
   }
-  .resizable--maximized{
+
+  .resizable--maximized {
     border-radius: unset !important;
   }
 }

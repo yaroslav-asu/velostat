@@ -1,8 +1,9 @@
 <template>
   <q-layout>
-    <GreetingSection />
-    <WhySection />
-    <MapSection />
+      <GreetingSection />
+      <WhySection />
+      <MapSection />
+
   </q-layout>
 </template>
 
@@ -21,3 +22,7 @@ export default defineComponent({
   }
 });
 </script>
+
+<style lang="scss" scoped>
+
+</style>

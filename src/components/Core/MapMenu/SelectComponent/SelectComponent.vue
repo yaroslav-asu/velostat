@@ -9,7 +9,6 @@
     color="primary"
     :options="options"
     options-dense
-    ref="a"
   />
 </template>
 
@@ -19,10 +18,6 @@ import { ref } from "vue";
 export default {
   name: "MapMenuSelect",
   data() {
-    setInterval(() => {
-      console.log(this.$refs.a)
-    }, 100)
-
     return {
       model: ref(null),
       options: [

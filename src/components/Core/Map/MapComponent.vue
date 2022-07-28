@@ -1,13 +1,15 @@
 <template>
-  <div id="map" />
+  <div id="map"/>
 </template>
 
 <script>
 import mapboxgl from "mapbox-gl";
 
 export default {
-  mounted() {
+  async mounted() {
     this.createMap();
+    await this.$nextTick()
+    this.resize()
   },
   methods: {
     createMap: function() {
@@ -15,36 +17,36 @@ export default {
       this.map = new mapboxgl.Map({
         container: "map",
         options: {
-          language: "auto"
+          language: "ru"
         },
         style: "mapbox://styles/mapbox/streets-v11",
         minzoom: 1.3,
         center: [37.618423, 55.751244],
-        zoom: 5
+        zoom: 10
       });
       const geojson = {
-        type: 'FeatureCollection',
+        type: "FeatureCollection",
         features: [
           {
-            type: 'Feature',
+            type: "Feature",
             geometry: {
-              type: 'Point',
+              type: "Point",
               coordinates: [-77.032, 38.913]
             },
             properties: {
-              title: 'Mapbox',
-              description: 'Washington, D.C.'
+              title: "Mapbox",
+              description: "Washington, D.C."
             }
           },
           {
-            type: 'Feature',
+            type: "Feature",
             geometry: {
-              type: 'Point',
+              type: "Point",
               coordinates: [-122.414, 37.776]
             },
             properties: {
-              title: 'Mapbox',
-              description: 'San Francisco, California'
+              title: "Mapbox",
+              description: "San Francisco, California"
             }
           }
         ]
@@ -53,27 +55,37 @@ export default {
         // create a HTML element for each feature
         // const el = h('div')
 
-        const el = document.createElement('div');
+        const el = document.createElement("div");
         // console.log(el)
-        el.className = 'marker';
+        el.className = "marker";
 
         // make a marker for each feature and add to the map
         new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).addTo(this.map);
       }
+    },
+    startResizing(){
+      this.resizingInterval = setInterval(() => {
+        this.map.resize()
+      })
+    },
+    stopResizing(){
+      clearInterval(this.resizingInterval)
+    },
+    resize(){
+      this.map.resize()
     }
   },
-  data(){
+  data() {
     return {
-
-    }
-  }
+    };
+  },
 };
 </script>
 
 <style lang="scss">
-#map{
-  width: 100vw;
-  height: 100vh;
+#map {
+  width: 100%;
+  height: 100%;
 }
 
 .marker {
@@ -82,8 +94,9 @@ export default {
   height: 10px;
   border-radius: 50%;
   cursor: pointer;
-  &:hover{
+
+  &:hover {
     background-color: red;
-   }
+  }
 }
 </style>

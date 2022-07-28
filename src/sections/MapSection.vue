@@ -5,8 +5,16 @@
         <ResizableComponent
           class="half_wrapper__resizable_component"
           :resizable-styles="{borderRadius: '20px'}"
+          @startResizing="$refs.mapComponent.startResizing()"
+          @endResizing="$refs.mapComponent.stopResizing()"
+          v-model="isMapFullscreen"
         >
-          <MapComponent/>
+          <MapComponent ref="mapComponent"/>
+          <MapMenu
+            class="resizable_component__map_menu"
+
+            v-if="isMapFullscreen"
+          />
         </ResizableComponent>
       </div>
       <div class="half_wrapper site_section__half_wrapper">
@@ -21,13 +29,25 @@
 <script>
 import MapComponent from "components/Core/Map/MapComponent";
 import ResizableComponent from "components/Core/Resizable/ResizableComponent";
+import MapMenu from "components/Core/MapMenu/MapMenu";
 
 export default {
   name: "MapSection",
   components: {
     ResizableComponent,
     MapComponent,
-  }
+    MapMenu
+  },
+  methods: {
+    startMapResizing(){
+      console.log('a')
+    }
+  },
+  data(){
+    return {
+      isMapFullscreen: false,
+    }
+  },
 };
 </script>
 
@@ -40,8 +60,14 @@ export default {
   text-align: center;
   border-radius: 20px;
 }
-.half_wrapper__resizable_component{
+
+.half_wrapper__resizable_component {
   max-width: 560px;
   max-height: 686px;
+}
+
+.resizable_component__map_menu {
+  bottom: 35px;
+  left: 8px;
 }
 </style>

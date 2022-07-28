@@ -55,8 +55,6 @@ export default {
   padding: 12px;
   color: $secondary;
   position: absolute;
-  bottom: 15px;
-  left: 15px;
   background: rgba( 0, 0, 0, 0.4 );
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   backdrop-filter: blur( 4px );
