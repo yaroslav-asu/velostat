@@ -23,6 +23,13 @@
 <script>
 export default {
   name: "GreetingSection",
+  methods: {
+    getBikesTakenCount(){
+      this.$axios.get(`${this.$api}/v1/total_counter`).then(res => {
+        this.bikesTaken = res.data
+      })
+    }
+  },
   data() {
     return {
       bikesTaken: 31

@@ -49,17 +49,18 @@ export default {
 
 <style lang="scss" scoped>
 .map_menu {
-  max-width: 400px;
+  max-width: 450px;
   width: 100%;
   border-radius: 12px;
   padding: 12px;
   color: $secondary;
   position: absolute;
-  background: rgba( 0, 0, 0, 0.4 );
+  background: rgba( 0, 0, 0, 0.6 );
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   backdrop-filter: blur( 4px );
   -webkit-backdrop-filter: blur( 4px );
   border: 1px solid rgba( 255, 255, 255, 0.18 );
+  font-size: 20px;
 }
 .map_menu--first{
   margin-top: 0 !important;
