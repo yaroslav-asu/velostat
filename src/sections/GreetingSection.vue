@@ -24,13 +24,16 @@
 export default {
   name: "GreetingSection",
   methods: {
-    getBikesTakenCount(){
-      this.$axios.get(`${this.$api}/v1/total_counter`).then(res => {
-        this.bikesTaken = res.data
-      })
+    getBikesTakenCount() {
+      this.$axios.get(`http://veloapi.ortieom.ru:8000/v1/total_counter/`);
     }
   },
+  mounted() {
+
+    console.log(this.$api);
+  },
   data() {
+    this.getBikesTakenCount();
     return {
       bikesTaken: 31
     };
@@ -70,7 +73,8 @@ export default {
 .site_domain {
   color: $highlight;
 }
-.bikes_taken{
+
+.bikes_taken {
   font-size: 40px;
 }
 </style>

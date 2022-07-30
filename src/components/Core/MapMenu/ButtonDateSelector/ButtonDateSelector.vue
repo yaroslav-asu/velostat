@@ -17,8 +17,9 @@
             no-caps
             @click="setCurrentYear"
             class="select_time_btn minimized_button"
+            ref="a"
           />
-          <q-separator vertical/>
+          <q-separator vertical />
           <q-btn
             :label="$t('mapMenu.thisMonth')"
             color="secondary"
@@ -41,32 +42,23 @@ export default {
     options: {}
   },
   data() {
+    setInterval(() => {
+      console.log(this.$refs)
+    })
     return {
       date: this.modelValue
     };
   },
   methods: {
-    async setCurrentYear() {
-      let today = new Date();
-
-      this.date = {
-        from: `${today.getFullYear()}/01/01`,
-        to: `${today.getFullYear()}/12/31`
-      };
-      await this.$nextTick()
-      this.$refs.dateCalendar.setCalendarTo(today.getFullYear(), 12)
-    },
     setCurrentMonth() {
-      let today = new Date();
-      let thisMonth = today.getMonth() + 1;
-      if (thisMonth.toString().length < 2) {
-        thisMonth = `0${thisMonth}`;
-      }
-      let lastMonthDay = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
-      this.date = {
-        from: `${today.getFullYear()}/${thisMonth}/01`,
-        to: `${today.getFullYear()}/${thisMonth}/${lastMonthDay}`
-      };
+      this.$emit("setCurrentMonth");
+    },
+    setCurrentYear() {
+      this.$emit("setCurrentYear");
+    },
+    setCalendarTo(year, month) {
+      console.log(this.$refs.dateCalendar)
+      this.$refs.dateCalendar.setCalendarTo(year, month);
     }
   },
   watch: {
@@ -81,10 +73,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 
-.btns_group{
+.btns_group {
   .select_time_btn {
     height: 25px;
   }
+
   border-radius: 7px;
 }
 </style>
@@ -106,6 +99,7 @@ export default {
     }
   }
 }
+
 .date_calendar {
   .q-date__main {
     .q-date__content {

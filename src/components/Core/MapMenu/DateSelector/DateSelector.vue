@@ -2,7 +2,12 @@
   <div class="column">
     <div class="wrapper flex justify-between">
       <DateInput v-model="inputDate.from" class="wrapper__date_input" />
-      <ButtonDateSelector v-model="calendarDate" />
+      <ButtonDateSelector
+        v-model="calendarDate"
+        @setCurrentMonth="setCurrentMonth"
+        @setCurrentYear="setCurrentYear"
+        ref="buttonDateSelector"
+      />
       <DateInput v-model="inputDate.to" class="wrapper__date_input" />
     </div>
   </div>
@@ -19,11 +24,13 @@ export default {
     DateInput,
     ButtonDateSelector
   },
+  mounted(){
+    // setTimeout(() => {
+    //   this.setCurrentYear()
+    // }, 1000)
+    this.setCurrentYear()
+  },
   data() {
-    // setInterval(() => {
-    //   console.log(this.calendarDate);
-    //   console.log(this.inputDate);
-    // }, 100);
     return {
       calendarDate: { from: "2019/02/05", to: "2019/02/06" },
       inputDate: {
@@ -50,6 +57,27 @@ export default {
       } else {
         this.calendarDate = null;
       }
+    },
+    async setCurrentYear() {
+      let today = new Date();
+      this.calendarDate = {
+        from: `${today.getFullYear()}/01/01`,
+        to: `${today.getFullYear()}/12/31`,
+      };
+      // await this.$nextTick();
+      // this.$refs.buttonDateSelector.setCalendarTo(today.getFullYear(), 12);
+    },
+    setCurrentMonth() {
+      let today = new Date();
+      let thisMonth = today.getMonth() + 1;
+      if (thisMonth.toString().length < 2) {
+        thisMonth = `0${thisMonth}`;
+      }
+      let lastMonthDay = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
+      this.calendarDate = {
+        from: `${today.getFullYear()}/${thisMonth}/01`,
+        to: `${today.getFullYear()}/${thisMonth}/${lastMonthDay}`
+      };
     }
   },
 
