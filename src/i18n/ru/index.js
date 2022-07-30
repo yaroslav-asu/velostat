@@ -1,6 +1,9 @@
 export default {
-  failed: "Action failed",
-  success: "Action was successful",
+  header: {
+    why: 'Почему мы этим занимаемся?',
+    map: 'Карта с данными',
+    download: 'Загрузить наши данные',
+  },
   greetingSection: {
     bikeSharing: "Велопрокат",
     inNumbers: "в цифрах",

@@ -1,5 +1,5 @@
 <template>
-  <section class="site_section ">
+  <section class="site_section">
     <div class="wrapper limiter column justify-center items-center full-height text-center">
       <h4 class="site_domain">VELOSTAT.RU</h4>
       <h2 class="title">
