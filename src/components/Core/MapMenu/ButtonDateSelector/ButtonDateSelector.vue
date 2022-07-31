@@ -42,9 +42,6 @@ export default {
     options: {}
   },
   data() {
-    setInterval(() => {
-      console.log(this.$refs)
-    })
     return {
       date: this.modelValue
     };

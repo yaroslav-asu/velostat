@@ -8,6 +8,10 @@ a {
   text-decoration: none;
   color: black;
   cursor: pointer;
+  transition: color .1s;
+  &:hover{
+    color: $highlight;
+  }
 }
 p{
   margin: 0;

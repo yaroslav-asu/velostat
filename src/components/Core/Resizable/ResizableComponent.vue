@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 
 export default {
   name: "ResizableComponent",
@@ -41,6 +42,7 @@ export default {
     };
   },
   methods: {
+    ...mapMutations("main", ["hideHeader", "showHeader"]),
     startTransition() {
       this.$refs.resizable.style.transition = `all ${this.animationDuration}ms`;
     },
@@ -48,6 +50,7 @@ export default {
       this.$refs.resizable.style.transition = "transition-duration: 0s";
     },
     open() {
+      this.hideHeader();
       let parentPos = this.$refs.resizableWrapper.getBoundingClientRect();
       this.startTransition();
       this.$refs.resizable.style.position = `fixed`;
@@ -66,9 +69,10 @@ export default {
         this.$refs.resizable.style.left = `0`;
       }, this.animationDuration);
 
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = "hidden";
     },
     close() {
+      this.showHeader();
       let parentPos = this.$refs.resizableWrapper.getBoundingClientRect();
       this.$refs.resizable.style.position = "absolute";
       this.$refs.resizable.style.top = `${window.scrollY}px`;
@@ -88,8 +92,8 @@ export default {
         this.$refs.resizable.style.top = "";
       }, this.animationDuration);
 
-      document.body.style.overflow = 'visible'
-    },
+      document.body.style.overflow = "visible";
+    }
 
   },
   computed: {
@@ -99,7 +103,7 @@ export default {
   },
   watch: {
     isFullscreen() {
-      this.$emit('startResizing')
+      this.$emit("startResizing");
 
       if (this.isFullscreen) {
         this.open();
@@ -109,9 +113,9 @@ export default {
 
       setTimeout(() => {
         this.$refs.resizable.style.transition = "";
-        this.$emit('endResizing')
+        this.$emit("endResizing");
       }, this.animationDuration);
-      this.$emit('update:modelValue', this.isFullscreen);
+      this.$emit("update:modelValue", this.isFullscreen);
     }
   }
 };

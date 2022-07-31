@@ -1,5 +1,5 @@
 <template>
-  <section class="site_section flex justify-between">
+  <section class="site_section flex justify-between" id="map_section">
     <div class="limiter flex justify-between">
       <div class="half_wrapper site_section__half_wrapper">
         <ResizableComponent

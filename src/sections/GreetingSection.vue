@@ -30,14 +30,13 @@ export default {
   },
   mounted() {
 
-    console.log(this.$api);
   },
   data() {
     this.getBikesTakenCount();
     return {
       bikesTaken: 31
     };
-  }
+  },
 };
 </script>
 
