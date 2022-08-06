@@ -104,7 +104,6 @@ export default {
   watch: {
     isFullscreen() {
       this.$emit("startResizing");
-
       if (this.isFullscreen) {
         this.open();
       } else {

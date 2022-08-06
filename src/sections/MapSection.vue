@@ -5,8 +5,8 @@
         <ResizableComponent
           class="half_wrapper__resizable_component"
           :resizable-styles="{borderRadius: '20px'}"
-          @startResizing="$refs.mapComponent.startResizing()"
-          @endResizing="$refs.mapComponent.stopResizing()"
+          @startResizing="startMapResizing"
+          @endResizing="stopMapResizing"
           v-model="isMapFullscreen"
         >
           <MapComponent ref="mapComponent"/>
@@ -40,7 +40,11 @@ export default {
   },
   methods: {
     startMapResizing(){
-      console.log('a')
+      this.$refs.mapComponent.startResizing()
+    },
+    async stopMapResizing(){
+      await this.$nextTick()
+      this.$refs.mapComponent.stopResizing()
     }
   },
   data(){

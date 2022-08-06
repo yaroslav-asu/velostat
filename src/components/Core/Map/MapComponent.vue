@@ -5,6 +5,7 @@
 <script>
 import mapboxgl from "mapbox-gl";
 import MapboxLanguage from "@mapbox/mapbox-gl-language";
+import geojsonData from '/src/js/Data.js'
 
 export default {
   async mounted() {
@@ -22,136 +23,131 @@ export default {
         container: "map",
         style: "mapbox://styles/mapbox/streets-v11",
         minzoom: 1.3,
-        center: [37.618423, 55.751244],
-        zoom: 2
+        center: [37.618423 + 0.635, 55.751244 - 0.07],
+        zoom: 9.5
       });
-      const geojson = {
-        type: "FeatureCollection",
-        features: [
-          {
-            "type": "Feature",
-            "properties": {
-              "description":
-                "<strong>Make it Mount Pleasant</strong><p>Make it Mount Pleasant is a handmade and vintage market and afternoon of live entertainment and kids activities. 12:00-6:00 p.m.</p>"
-            },
-            "geometry": {
-              "type": "Point",
-              "coordinates": [37.618423, 55.751244]
-            }
-          },
-          {
-            "type": "Feature",
-            "properties": {
-              "description":
-                "<strong>Mad Men Season Five Finale Watch Party</strong><p>Head to Lounge 201 (201 Massachusetts Avenue NE) Sunday for a Mad Men Season Five Finale Watch Party, complete with 60s costume contest, Mad Men trivia, and retro food and drink. 8:00-11:00 p.m. $10 general admission, $20 admission and two hour open bar.</p>"
-            },
-            "geometry": {
-              "type": "Point",
-              "coordinates": [38.618423, 55.751244]
-            }
-          },
-          {
-            "type": "Feature",
-            "properties": {
-              "description":
-                "<strong>Big Backyard Beach Bash and Wine Fest</strong><p>EatBar (2761 Washington Boulevard Arlington VA) is throwing a Big Backyard Beach Bash and Wine Fest on Saturday, serving up conch fritters, fish tacos and crab sliders, and Red Apron hot dogs. 12:00-3:00 p.m. $25.</p>"
-            },
-            "geometry": {
-              "type": "Point",
-              "coordinates": [-77.090372, 38.881189]
-            }
-          },
-          {
-            "type": "Feature",
-            "properties": {
-              "description":
-                "<strong>Ballston Arts & Crafts Market</strong><p>The Ballston Arts & Crafts Market sets up shop next to the Ballston metro this Saturday for the first of five dates this summer. Nearly 35 artists and crafters will be on hand selling their wares. 10:00-4:00 p.m.</p>"
-            },
-            "geometry": {
-              "type": "Point",
-              "coordinates": [-77.111561, 38.882342]
-            }
-          },
-          {
-            "type": "Feature",
-            "properties": {
-              "description":
-                "<strong>Seersucker Bike Ride and Social</strong><p>Feeling dandy? Get fancy, grab your bike, and take part in this year's Seersucker Social bike ride from Dandies and Quaintrelles. After the ride enjoy a lawn party at Hillwood with jazz, cocktails, paper hat-making, and more. 11:00-7:00 p.m.</p>"
-            },
-            "geometry": {
-              "type": "Point",
-              "coordinates": [-77.052477, 38.943951]
-            }
-          },
-          {
-            "type": "Feature",
-            "properties": {
-              "description":
-                "<strong>Capital Pride Parade</strong><p>The annual Capital Pride Parade makes its way through Dupont this Saturday. 4:30 p.m. Free.</p>"
-            },
-            "geometry": {
-              "type": "Point",
-              "coordinates": [-77.043444, 38.909664]
-            }
-          },
-          {
-            "type": "Feature",
-            "properties": {
-              "description":
-                "<strong>Muhsinah</strong><p>Jazz-influenced hip hop artist Muhsinah plays the Black Cat (1811 14th Street NW) tonight with Exit Clov and Gods’illa. 9:00 p.m. $12.</p>"
-            },
-            "geometry": {
-              "type": "Point",
-              "coordinates": [-77.031706, 38.914581]
-            }
-          },
-          {
-            "type": "Feature",
-            "properties": {
-              "description":
-                "<strong>A Little Night Music</strong><p>The Arlington Players' production of Stephen Sondheim's <em>A Little Night Music</em> comes to the Kogod Cradle at The Mead Center for American Theater (1101 6th Street SW) this weekend and next. 8:00 p.m.</p>"
-            },
-            "geometry": {
-              "type": "Point",
-              "coordinates": [-77.020945, 38.878241]
-            }
-          },
-          {
-            "type": "Feature",
-            "properties": {
-              "description":
-                "<strong>Truckeroo</strong><p>Truckeroo brings dozens of food trucks, live music, and games to half and M Street SE (across from Navy Yard Metro Station) today from 11:00 a.m. to 11:00 p.m.</p>"
-            },
-            "geometry": {
-              "type": "Point",
-              "coordinates": [-77.007481, 38.876516]
-            }
-          }
-        ]
-      };
 
       this.map.on("load", () => {
         this.map.addSource("bike_stations", {
           type: "geojson",
-          data: geojson
+          data: geojsonData
         });
         this.map.addLayer({
           id: "bike_stations",
           type: "circle",
           source: "bike_stations",
+          minzoom: 9.5,
           paint: {
-            "circle-color": "#4264fb",
-            "circle-radius": 6,
-            "circle-stroke-width": 2,
+            "circle-color": '#031A6B',
+            "circle-radius": [
+              'interpolate',
+              ['linear'],
+              ['get', 'Value'],
+              0,
+              3,
+              1000000,
+              2000,
+            ],
+            "circle-stroke-width": [
+              'interpolate',
+              ['linear'],
+              ['get', 'Value'],
+              0,
+              1,
+              1000000,
+              400,
+            ],
             "circle-stroke-color": "#ffffff"
           }
         });
+        this.map.addLayer({
+          id: "bike_stations_minimized",
+          type: "circle",
+          source: "bike_stations",
+          maxzoom: 9.5,
+          paint: {
+            "circle-color": '#9D75CB',
+            "circle-radius": 2,
+            "circle-stroke-width": 1,
+            "circle-stroke-color": "#ffffff"
+          }
+        });
+        this.map.addLayer(
+          {
+            'id': 'bike_stations-heat',
+            'type': 'heatmap',
+            'source': 'bike_stations',
+            'maxzoom': 9.5,
+            'paint': {
+// Increase the heatmap weight based on frequency and property magnitude
+              'heatmap-weight': [
+                'interpolate',
+                ['linear'],
+                ['get', 'Value'],
+                0,
+                0,
+                1000000,
+                220
+              ],
+// Increase the heatmap color weight weight by zoom level
+// heatmap-intensity is a multiplier on top of heatmap-weight
+              'heatmap-intensity': [
+                'interpolate',
+                ['linear'],
+                ['zoom'],
+                0,
+                1,
+                9.5,
+                3
+              ],
+// Color ramp for heatmap.  Domain is 0 (low) to 1 (high).
+// Begin color ramp at 0-stop with a 0-transparancy color
+// to create a blur-like effect.
+              'heatmap-color': [
+                'interpolate',
+                ['linear'],
+                ['heatmap-density'],
+                0,
+                'rgba(33,102,172,0)',
+                0.2,
+                'rgb(103,169,207)',
+                0.4,
+                'rgb(209,229,240)',
+                0.6,
+                'rgb(231,199,253)',
+                0.8,
+                'rgb(176,98,239)',
+                1,
+                'rgb(109,24,178)'
+              ],
+// Adjust the heatmap radius by zoom level
+              'heatmap-radius': [
+                'interpolate',
+                ['linear'],
+                ['zoom'],
+                0,
+                2,
+                10,
+                20
+              ],
+// Transition from heatmap to circle layer by zoom level
+              'heatmap-opacity': [
+                'interpolate',
+                ['linear'],
+                ['zoom'],
+                7,
+                1,
+                20,
+                0
+              ]
+            }
+          },
+          'waterway-label'
+        );
       });
-
-
     },
+
     translateMap() {
-      console.log(this.$q.lang.getLocale());
       const language = new MapboxLanguage({
         supportedLanguages: ["ru", "en"]
       });
@@ -166,7 +162,11 @@ export default {
       this.map.on("mouseenter", "bike_stations", (e) => {
         this.map.getCanvas().style.cursor = "pointer";
         const coordinates = e.features[0].geometry.coordinates.slice();
-        const description = e.features[0].properties.description;
+        const description = `
+            <p class="popup_title">${this.$t("map.popupTitle")}</p>
+            <p>${this.$t("map.stationNumber")}: ${e.features[0].properties.Id}</p>
+            <p>${this.$t("map.stationTakesCount")}: ${e.features[0].properties.Value}</p>
+           `;
         while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
           coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
         }
@@ -180,40 +180,53 @@ export default {
       });
     },
     startResizing() {
-      this.resizingInterval = setInterval(() => {
-        this.map.resize();
-      });
+      // this.resizingInterval = setInterval(() => {
+      //   this.map.resize();
+      // });
+      // this.newCenter([37.618423 , 55.751244])
     },
     stopResizing() {
-      clearInterval(this.resizingInterval);
+      // clearInterval(this.resizingInterval);
+      // this.newCenter( [37.618423 + 0.635, 55.751244 - 0.07])
     },
     resize() {
       this.map.resize();
+    },
+    newCenter(coords){
+      this.map.flyTo({
+        center: coords
+      });
     }
   },
   data() {
-    return {};
+
+    return {
+      geojsonData: null
+    };
   }
 };
 </script>
 
 <style lang="scss">
 #map {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
 }
 
-.marker {
-  background-color: red;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  cursor: pointer;
-}
+//.marker {
+//  background-color: red;
+//  width: 10px;
+//  height: 10px;
+//  border-radius: 50%;
+//  cursor: pointer;
+//}
+
 .mapboxgl-popup {
   max-width: 200px;
   border-radius: 7px;
-
+  text-align: left;
 }
-
+.popup_title{
+  font-size: 16px;
+}
 </style>

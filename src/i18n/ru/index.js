@@ -1,8 +1,8 @@
 export default {
   header: {
-    why: 'Почему мы этим занимаемся?',
-    map: 'Карта с данными',
-    download: 'Загрузить наши данные',
+    why: "Почему мы этим занимаемся?",
+    map: "Карта с данными",
+    download: "Загрузить наши данные"
   },
   greetingSection: {
     bikeSharing: "Велопрокат",
@@ -16,15 +16,20 @@ export default {
   mapSection: {
     title: "Карта проката велосипедов"
   },
+  map: {
+    popupTitle: "Информация о станции",
+    stationNumber: "Номер",
+    stationTakesCount: "Количество взятий"
+  },
   mapMenu: {
     thisYear: "Этот год",
     thisMonth: "Этот месяц",
     city: "Город",
     date: "Дата",
     show: "Отображать",
-    routes: 'Маршруты поездок',
-    startRent: 'Начало проката',
-    endRent: 'Конец проката',
+    routes: "Маршруты поездок",
+    startRent: "Начало проката",
+    endRent: "Конец проката"
   },
   cities: {
     moscow: "Москва | Москва | Москвы",
@@ -34,7 +39,7 @@ export default {
   },
   bike: "велосипедов | велосипед | велосипеда | велосипедов",
   footer: {
-    contact: 'Связаться с нами:',
-    download: 'Скачать данные',
+    contact: "Связаться с нами:",
+    download: "Скачать данные"
   }
 };
