@@ -9,11 +9,15 @@
           @endResizing="stopMapResizing"
           v-model="isMapFullscreen"
         >
-          <MapComponent ref="mapComponent"/>
+          <LoadingComponent v-if="isMapLoading"/>
+          <MapComponent ref="mapComponent" />
           <MapMenu
+            @updateMapContent="updateMapContent"
+            @moveMap="moveMap"
+            @startLoading="isMapLoading = true"
+            @endLoading="isMapLoading = false"
             class="resizable_component__map_menu"
-
-            v-if="isMapFullscreen"
+            :style="{display: isMapFullscreen ? 'block':  'none'}"
           />
         </ResizableComponent>
       </div>
@@ -30,28 +34,37 @@
 import MapComponent from "components/Core/Map/MapComponent";
 import ResizableComponent from "components/Core/Resizable/ResizableComponent";
 import MapMenu from "components/Core/MapMenu/MapMenu";
+import LoadingComponent from "components/LoadingComponent/LoadingComponent";
 
 export default {
   name: "MapSection",
   components: {
     ResizableComponent,
     MapComponent,
-    MapMenu
+    MapMenu,
+    LoadingComponent,
   },
   methods: {
-    startMapResizing(){
-      this.$refs.mapComponent.startResizing()
+    startMapResizing() {
+      this.$refs.mapComponent.startResizing();
     },
-    async stopMapResizing(){
-      await this.$nextTick()
-      this.$refs.mapComponent.stopResizing()
+    async stopMapResizing() {
+      await this.$nextTick();
+      this.$refs.mapComponent.stopResizing();
+    },
+    updateMapContent(newData) {
+      this.$refs.mapComponent.updateContent(newData);
+    },
+    moveMap(coordinates){
+      this.$refs.mapComponent.moveMap(coordinates);
     }
   },
-  data(){
+  data() {
     return {
       isMapFullscreen: false,
-    }
-  },
+      isMapLoading: false,
+    };
+  }
 };
 </script>
 

@@ -7,23 +7,32 @@
     rounded
     borderless
     color="primary"
-    :options="options"
+    :options="cities"
     options-dense
   />
 </template>
 
 <script>
-import { ref } from "vue";
-
 export default {
   name: "MapMenuSelect",
+  props: {
+    cities: {
+      default: [],
+    },
+    modelValue: {},
+  },
   data() {
     return {
-      model: ref(null),
-      options: [
-        "Google", "Facebook", "Twitter", "Apple"
-      ]
+      model: this.modelValue,
     };
+  },
+  watch: {
+    modelValue() {
+      this.model = this.modelValue;
+    },
+    model(){
+      this.$emit("update:modelValue", this.model)
+    }
   }
 };
 </script>

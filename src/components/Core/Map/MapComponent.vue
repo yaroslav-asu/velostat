@@ -5,18 +5,24 @@
 <script>
 import mapboxgl from "mapbox-gl";
 import MapboxLanguage from "@mapbox/mapbox-gl-language";
-import geojsonData from '/src/js/Data.js'
 
 export default {
   async mounted() {
     this.createMap();
     await this.$nextTick();
-
     this.resize();
     this.addPopups();
     this.translateMap();
   },
   methods: {
+    moveMap(coordinates){
+      this.map.flyTo({
+        center: coordinates.reverse(),
+      })
+    },
+    updateContent(newContent){
+      this.map.getSource('bike_stations').setData(newContent);
+    },
     createMap() {
       mapboxgl.accessToken = "pk.eyJ1IjoieWFyb3NsYXYtYXN1IiwiYSI6ImNsNjBheGMwNDFsZjEzZW5xbHJkM2hnejMifQ.CBh1a-ElYBGS_B6QL9ZeVQ";
       this.map = new mapboxgl.Map({
@@ -30,7 +36,10 @@ export default {
       this.map.on("load", () => {
         this.map.addSource("bike_stations", {
           type: "geojson",
-          data: geojsonData
+          data: {
+            type: "FeatureCollection",
+            features: []
+          }
         });
         this.map.addLayer({
           id: "bike_stations",
@@ -38,15 +47,15 @@ export default {
           source: "bike_stations",
           minzoom: 9.5,
           paint: {
-            "circle-color": '#031A6B',
+            "circle-color": 'rgb(178,24,43)',
             "circle-radius": [
               'interpolate',
               ['linear'],
               ['get', 'Value'],
               0,
               3,
-              1000000,
-              2000,
+              10000,
+              20,
             ],
             "circle-stroke-width": [
               'interpolate',
@@ -54,8 +63,8 @@ export default {
               ['get', 'Value'],
               0,
               1,
-              1000000,
-              400,
+              10000,
+              4,
             ],
             "circle-stroke-color": "#ffffff"
           }
@@ -66,7 +75,7 @@ export default {
           source: "bike_stations",
           maxzoom: 9.5,
           paint: {
-            "circle-color": '#9D75CB',
+            "circle-color": 'rgb(178,24,43)',
             "circle-radius": 2,
             "circle-stroke-width": 1,
             "circle-stroke-color": "#ffffff"
@@ -114,11 +123,11 @@ export default {
                 0.4,
                 'rgb(209,229,240)',
                 0.6,
-                'rgb(231,199,253)',
+                'rgb(253,219,199)',
                 0.8,
-                'rgb(176,98,239)',
+                'rgb(239,138,98)',
                 1,
-                'rgb(109,24,178)'
+                'rgb(178,24,43)'
               ],
 // Adjust the heatmap radius by zoom level
               'heatmap-radius': [
@@ -199,7 +208,6 @@ export default {
     }
   },
   data() {
-
     return {
       geojsonData: null
     };
@@ -212,15 +220,6 @@ export default {
   width: 100vw;
   height: 100vh;
 }
-
-//.marker {
-//  background-color: red;
-//  width: 10px;
-//  height: 10px;
-//  border-radius: 50%;
-//  cursor: pointer;
-//}
-
 .mapboxgl-popup {
   max-width: 200px;
   border-radius: 7px;

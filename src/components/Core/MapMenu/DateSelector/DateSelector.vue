@@ -24,19 +24,22 @@ export default {
     DateInput,
     ButtonDateSelector
   },
+  props: {
+    modelValue: {
+      type: Object,
+      default: () => ({
+        from: null,
+        to: null
+      })
+    },
+  },
   mounted(){
-    // setTimeout(() => {
-    //   this.setCurrentYear()
-    // }, 1000)
     this.setCurrentYear()
   },
   data() {
     return {
-      calendarDate: { from: "2019/02/05", to: "2019/02/06" },
-      inputDate: {
-        from: "",
-        to: ""
-      },
+      calendarDate: this.modelValue,
+      inputDate: this.modelValue,
       options: (date) => {
         return date >= "2019/02/03" && date <= "2019/02/15";
       }
@@ -64,8 +67,6 @@ export default {
         from: `${today.getFullYear()}/01/01`,
         to: `${today.getFullYear()}/12/31`,
       };
-      // await this.$nextTick();
-      // this.$refs.buttonDateSelector.setCalendarTo(today.getFullYear(), 12);
     },
     setCurrentMonth() {
       let today = new Date();
@@ -93,10 +94,10 @@ export default {
         this.inputDate.to = "";
         this.inputDate.from = "";
       }
+      this.$emit('update:modelValue', this.calendarDate);
     },
     "inputDate.from": function() {
       this.updateCalendarDate();
-
     },
     "inputDate.to": function() {
       this.updateCalendarDate();

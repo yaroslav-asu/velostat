@@ -25,7 +25,9 @@ export default {
   name: "GreetingSection",
   methods: {
     getBikesTakenCount() {
-      this.$axios.get(`http://veloapi.ortieom.ru:8000/v1/total_counter/`);
+      this.$axios.get(`http://veloapi.ortieom.ru:8000/v1/total_counter/`).then(res => {
+        this.bikesTaken = res.data
+      });
     }
   },
   mounted() {
