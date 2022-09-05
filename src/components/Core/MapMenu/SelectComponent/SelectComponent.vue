@@ -1,13 +1,13 @@
 <template>
   <q-select
-    v-model="model"
+    v-model="titledModel"
     class="map_menu_select"
     dense
     bg-color="secondary"
     rounded
     borderless
     color="primary"
-    :options="cities"
+    :options="Object.values(this.options)"
     options-dense
   />
 </template>
@@ -16,22 +16,29 @@
 export default {
   name: "MapMenuSelect",
   props: {
-    cities: {
-      default: [],
-    },
     modelValue: {},
+    options: {}
   },
   data() {
+    let defaultModel = Object.keys(this.options)[0];
     return {
-      model: this.modelValue,
+      titledModel: this.options[defaultModel],
+      model: defaultModel
     };
   },
   watch: {
+    titledModel() {
+      for (let i = 0; i < Object.values(this.titledModel).length; i++) {
+        if (Object.values(this.options)[i] === this.titledModel) {
+          this.model = Object.keys(this.options)[i];
+        }
+      }
+    },
+    model() {
+      this.$emit("update:modelValue", this.model);
+    },
     modelValue() {
       this.model = this.modelValue;
-    },
-    model(){
-      this.$emit("update:modelValue", this.model)
     }
   }
 };

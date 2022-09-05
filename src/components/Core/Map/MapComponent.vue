@@ -48,35 +48,7 @@ export default {
           minzoom: 9.5,
           paint: {
             "circle-color": 'rgb(178,24,43)',
-            "circle-radius": [
-              'interpolate',
-              ['linear'],
-              ['get', 'Value'],
-              0,
-              3,
-              10000,
-              20,
-            ],
-            "circle-stroke-width": [
-              'interpolate',
-              ['linear'],
-              ['get', 'Value'],
-              0,
-              1,
-              10000,
-              4,
-            ],
-            "circle-stroke-color": "#ffffff"
-          }
-        });
-        this.map.addLayer({
-          id: "bike_stations_minimized",
-          type: "circle",
-          source: "bike_stations",
-          maxzoom: 9.5,
-          paint: {
-            "circle-color": 'rgb(178,24,43)',
-            "circle-radius": 2,
+            "circle-radius": 3,
             "circle-stroke-width": 1,
             "circle-stroke-color": "#ffffff"
           }
@@ -88,7 +60,6 @@ export default {
             'source': 'bike_stations',
             'maxzoom': 9.5,
             'paint': {
-// Increase the heatmap weight based on frequency and property magnitude
               'heatmap-weight': [
                 'interpolate',
                 ['linear'],
@@ -98,8 +69,6 @@ export default {
                 1000000,
                 220
               ],
-// Increase the heatmap color weight weight by zoom level
-// heatmap-intensity is a multiplier on top of heatmap-weight
               'heatmap-intensity': [
                 'interpolate',
                 ['linear'],
@@ -109,9 +78,6 @@ export default {
                 9.5,
                 3
               ],
-// Color ramp for heatmap.  Domain is 0 (low) to 1 (high).
-// Begin color ramp at 0-stop with a 0-transparancy color
-// to create a blur-like effect.
               'heatmap-color': [
                 'interpolate',
                 ['linear'],
@@ -129,7 +95,6 @@ export default {
                 1,
                 'rgb(178,24,43)'
               ],
-// Adjust the heatmap radius by zoom level
               'heatmap-radius': [
                 'interpolate',
                 ['linear'],
@@ -139,7 +104,6 @@ export default {
                 10,
                 20
               ],
-// Transition from heatmap to circle layer by zoom level
               'heatmap-opacity': [
                 'interpolate',
                 ['linear'],

@@ -1,7 +1,7 @@
 <template>
   <nav class="map_menu column">
     <p class="map_menu__title map_menu--first mb mt">{{ $t("mapMenu.city") }}</p>
-    <SelectComponent :cities="cities" v-model="activeCity" />
+    <SelectComponent :options="cities" v-model="activeCity" />
     <p class="map_menu__title mb mt">{{ $t("mapMenu.date") }}</p>
     <DateSelector v-model="dateInterval" />
     <p class="map_menu__title mb mt">{{ $t("mapMenu.show") }}</p>
@@ -9,16 +9,6 @@
       v-model="rentShowSettings"
       class="map_menu__switch_buttons q-mb-md"
     />
-    <div class="">
-      <q-toggle
-        v-model="showRoutes"
-        :label="$t('mapMenu.routes')"
-        left-label
-        color="highlight"
-        dense
-      />
-    </div>
-
   </nav>
 </template>
 
@@ -35,11 +25,6 @@ export default {
     SwitchButtons
   },
   async mounted() {
-    this.$axios.get(`${this.$api}cities/`).then(res => {
-      this.cities = res.data.map(elem => {
-        return elem.city_name;
-      });
-    });
     await this.$nextTick();
     this.getMapContent();
   },
@@ -53,7 +38,7 @@ export default {
           end_date: this.endDate,
           show_taken: this.rentShowSettings.start,
           show_returned: this.rentShowSettings.end,
-          show_routes: this.showRoutes
+          show_routes: false
         }
       }).then(res => {
         this.$emit("updateMapContent", res.data);
@@ -62,8 +47,14 @@ export default {
     }
   },
   data() {
+    this.$axios.get(`${this.$api}cities/`).then(res => {
+      this.cities = {};
+      for (let city of res.data) {
+        this.cities[city.city_name] = this.$tc(`cities.${city.city_name}`, 0);
+      }
+    });
     return {
-      cities: [],
+      cities: { "msc": "Москва" },
       activeCity: "msc",
       dateInterval: {
         from: "",
@@ -72,8 +63,7 @@ export default {
       rentShowSettings: {
         start: false,
         end: true
-      },
-      showRoutes: false
+      }
     };
   },
   computed: {
@@ -110,7 +100,10 @@ export default {
     dateInterval() {
       this.getMapContent();
     },
-    rentShowSettings() {
+    "rentShowSettings.start": function() {
+      this.getMapContent();
+    },
+    "rentShowSettings.end": function() {
       this.getMapContent();
     },
     showRoutes() {

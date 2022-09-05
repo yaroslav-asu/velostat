@@ -9,7 +9,7 @@
           @endResizing="stopMapResizing"
           v-model="isMapFullscreen"
         >
-          <LoadingComponent v-if="isMapLoading"/>
+<!--          <LoadingComponent v-if="isMapLoading"/>-->
           <MapComponent ref="mapComponent" />
           <MapMenu
             @updateMapContent="updateMapContent"
@@ -34,7 +34,6 @@
 import MapComponent from "components/Core/Map/MapComponent";
 import ResizableComponent from "components/Core/Resizable/ResizableComponent";
 import MapMenu from "components/Core/MapMenu/MapMenu";
-import LoadingComponent from "components/LoadingComponent/LoadingComponent";
 
 export default {
   name: "MapSection",
@@ -42,7 +41,6 @@ export default {
     ResizableComponent,
     MapComponent,
     MapMenu,
-    LoadingComponent,
   },
   methods: {
     startMapResizing() {

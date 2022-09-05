@@ -5,7 +5,7 @@
       <h2 class="title">
         {{ $t("greetingSection.bikeSharing") }}
         <span class="city_title">
-          {{ $tc("cities.moscow", 2) }}
+          {{ $tc("cities.msc", 1) }}
         </span>
         {{ $t("greetingSection.inNumbers") }}
       </h2>
