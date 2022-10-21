@@ -1,6 +1,5 @@
 <template>
   <q-layout>
-    <HeaderComponent />
       <GreetingSection />
       <WhySection />
       <MapSection />
@@ -13,7 +12,6 @@ import { defineComponent } from "vue";
 import GreetingSection from "src/sections/GreetingSection";
 import WhySection from "src/sections/WhySection";
 import MapSection from "src/sections/MapSection";
-import HeaderComponent from "components/Header/HeaderComponent";
 import FooterComponent from "components/Footer/FooterComponent";
 
 export default defineComponent({
@@ -22,7 +20,6 @@ export default defineComponent({
     GreetingSection,
     WhySection,
     MapSection,
-    HeaderComponent,
     FooterComponent
   }
 });

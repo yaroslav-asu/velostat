@@ -9,7 +9,7 @@
           @endResizing="stopMapResizing"
           v-model="isMapFullscreen"
         >
-<!--          <LoadingComponent v-if="isMapLoading"/>-->
+<!--          <MapLoadingComponent v-if="isMapLoading"/>-->
           <MapComponent ref="mapComponent" />
           <MapMenu
             @updateMapContent="updateMapContent"

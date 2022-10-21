@@ -9,10 +9,13 @@
         </span>
         {{ $t("greetingSection.inNumbers") }}
       </h2>
-      <h4 class="bikes_taken">
+      <h4 class="bikes_taken flex">
         {{ $t("greetingSection.bikesTaken") }}
-        <span class="highlight">
-          {{ bikesTaken }}
+        <span class="q-mx-md">
+          <span class="highlight" v-if="bikesTaken !== -1">
+            {{ bikesTaken }}
+          </span>
+          <LoadingAnimation class="highlight" v-else />
         </span>
         {{ $tc("bike", bikesTaken) }}
       </h4>
@@ -21,12 +24,17 @@
 </template>
 
 <script>
+import LoadingAnimation from "components/LoadingAnimation/LoadingAnimation";
+
 export default {
   name: "GreetingSection",
+  components: {
+    LoadingAnimation
+  },
   methods: {
     getBikesTakenCount() {
       this.$axios.get(`http://veloapi.ortieom.ru:8000/v1/total_counter/`).then(res => {
-        this.bikesTaken = res.data
+        this.bikesTaken = res.data;
       });
     }
   },
@@ -36,9 +44,9 @@ export default {
   data() {
     this.getBikesTakenCount();
     return {
-      bikesTaken: 31
+      bikesTaken: -1
     };
-  },
+  }
 };
 </script>
 
