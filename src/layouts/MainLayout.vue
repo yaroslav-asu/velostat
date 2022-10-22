@@ -1,5 +1,6 @@
 <template>
   <q-layout>
+    <NextSectionButton/>
       <GreetingSection />
       <WhySection />
       <MapSection />
@@ -13,10 +14,12 @@ import GreetingSection from "src/sections/GreetingSection";
 import WhySection from "src/sections/WhySection";
 import MapSection from "src/sections/MapSection";
 import FooterComponent from "components/Footer/FooterComponent";
+import NextSectionButton from "components/NextSectionButton/NextSectionButton";
 
 export default defineComponent({
   name: "MainLayout",
   components: {
+    NextSectionButton,
     GreetingSection,
     WhySection,
     MapSection,

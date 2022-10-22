@@ -144,6 +144,7 @@ export default {
 
   .resizable--maximized {
     border-radius: unset !important;
+    z-index: 100;
   }
 }
 

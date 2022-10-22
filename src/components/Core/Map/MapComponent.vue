@@ -183,6 +183,8 @@ export default {
 #map {
   width: 100vw;
   height: 100vh;
+  position: relative;
+  z-index: 10;
 }
 .mapboxgl-popup {
   max-width: 200px;
