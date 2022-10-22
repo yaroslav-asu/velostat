@@ -1,15 +1,17 @@
 <template>
 <div class="">
-  <LoadingComponent />
+  <ContactForm/>
 </div>
 </template>
 
 <script>
-import LoadingComponent from "components/LoadingAnimation/LoadingAnimation";
+// import LoadingComponent from "components/LoadingAnimation/LoadingAnimation";
+import ContactForm from "components/Core/ContactForm/ContactForm";
 export default {
   name: "TestLayout",
   components: {
-    LoadingComponent,
+    ContactForm,
+    // LoadingComponent,
   }
 
 };

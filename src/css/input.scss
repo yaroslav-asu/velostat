@@ -1,0 +1,30 @@
+.input{
+  .q-field__inner{
+    .q-field__control{
+      height: 36px;
+      border-radius: $borderRadius !important;
+      &:before{
+        border-color: $borderLight;
+        border-radius: $borderRadius !important;
+      }
+      &:hover{
+        &:before{
+          border-color: rgba($borderDark, 0.5);
+        }
+      }
+      .q-field__control-container{
+        font-size: 18px;
+        .q-field__native{
+          padding-top: 0;
+          padding-bottom: 0;
+        }
+        .q-field__suffix{
+          line-height: normal !important;
+        }
+      }
+      .q-field__append{
+        height: auto;
+      }
+    }
+  }
+}

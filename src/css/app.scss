@@ -1,3 +1,7 @@
+@import 'input.scss';
+@import 'textarea.scss';
+@import 'q-button.scss';
+
 * {
   padding: 0;
   margin: 0;
@@ -9,11 +13,13 @@ a {
   color: black;
   cursor: pointer;
   transition: color .1s;
-  &:hover{
+
+  &:hover {
     color: $highlight;
   }
 }
-p{
+
+p {
   margin: 0;
 }
 
@@ -39,12 +45,13 @@ p{
   height: 100%;
 }
 
-.minimized_button{
+.minimized_button {
   min-height: auto;
   line-height: normal;
   padding: 0;
   flex-wrap: nowrap;
-  .q-btn__content{
+
+  .q-btn__content {
     line-height: normal;
   }
 }

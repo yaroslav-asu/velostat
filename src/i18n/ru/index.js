@@ -38,8 +38,22 @@ export default {
     tmn: "Тюмень | Тюмени"
   },
   bike: "велосипедов | велосипед | велосипеда | велосипедов",
+  feedBack: "Обратная связь",
+
   footer: {
-    contact: "Связаться с нами:",
+    contact: "Связаться с нами",
     download: "Скачать данные"
   },
+  buttons: {
+    download: "Скачать данные",
+    send: "Отправить"
+  },
+  errors: {
+    requiredEmailOrTelegram: "Необходимо указать email или telegram",
+    required: "Обязательное поле",
+  },
+  name: "Имя",
+  emailOrTelegram: "Email или Telegram",
+  message: "Сообщение",
+  subject: 'Тема',
 };

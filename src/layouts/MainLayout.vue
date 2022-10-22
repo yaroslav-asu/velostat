@@ -1,10 +1,16 @@
 <template>
   <q-layout>
-    <NextSectionButton/>
-      <GreetingSection />
-      <WhySection />
-      <MapSection />
-    <FooterComponent />
+    <NextSectionButton />
+    <GreetingSection />
+    <WhySection />
+    <MapSection />
+    <ContactForm
+      v-if="showContactForm"
+      @close="showContactForm = false"
+    />
+    <FooterComponent
+      @openContactForm="a"
+    />
   </q-layout>
 </template>
 
@@ -15,6 +21,7 @@ import WhySection from "src/sections/WhySection";
 import MapSection from "src/sections/MapSection";
 import FooterComponent from "components/Footer/FooterComponent";
 import NextSectionButton from "components/NextSectionButton/NextSectionButton";
+import ContactForm from "components/Core/ContactForm/ContactForm";
 
 export default defineComponent({
   name: "MainLayout",
@@ -23,7 +30,19 @@ export default defineComponent({
     GreetingSection,
     WhySection,
     MapSection,
-    FooterComponent
+    FooterComponent,
+    ContactForm
+  },
+  data() {
+    return {
+      showContactForm: false
+    };
+  },
+  methods: {
+    a() {
+      console.log("a");
+      this.showContactForm = true;
+    }
   }
 });
 </script>
