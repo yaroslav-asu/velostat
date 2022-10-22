@@ -134,6 +134,7 @@ export default {
   -webkit-backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.18);
   font-size: 20px;
+  z-index: 10;
 }
 
 .map_menu--first {
