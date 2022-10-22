@@ -31,7 +31,7 @@ export default {
   methods: {
     getMapContent() {
       this.$emit("startLoading");
-      this.$axios.get(`${this.$api}map/`, {
+      this.$axios.get(`${this.$api}map`, {
         params: {
           city: this.activeCity,
           start_date: this.startDate,
@@ -47,7 +47,7 @@ export default {
     }
   },
   data() {
-    this.$axios.get(`${this.$api}cities/`).then(res => {
+    this.$axios.get(`${this.$api}cities`).then(res => {
       this.cities = {};
       for (let city of res.data) {
         this.cities[city.city_name] = this.$tc(`cities.${city.city_name}`, 0);
@@ -88,7 +88,7 @@ export default {
   },
   watch: {
     activeCity() {
-      this.$axios.get(`${this.$api}cities/`).then(res => {
+      this.$axios.get(`${this.$api}cities`).then(res => {
         for (let i = 0; i < res.data.length; i++) {
           if (res.data[i].city_name === this.activeCity) {
             this.$emit("moveMap", res.data[i].coordinates);

@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     getBikesTakenCount() {
-      this.$axios.get(`http://veloapi.ortieom.ru:8000/v1/total_counter/`).then(res => {
+      this.$axios.get(`http://veloapi.ortieom.ru:8000/v1/total_counter`).then(res => {
         this.bikesTaken = res.data;
       });
     }
