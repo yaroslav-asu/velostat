@@ -3,26 +3,25 @@
     <p class="map_menu__title map_menu--first mb mt">{{ $t("mapMenu.city") }}</p>
     <SelectComponent :options="cities" v-model="activeCity" />
     <p class="map_menu__title mb mt">{{ $t("mapMenu.date") }}</p>
-    <DateSelector v-model="dateInterval" />
-    <p class="map_menu__title mb mt">{{ $t("mapMenu.show") }}</p>
-    <SwitchButtons
-      v-model="rentShowSettings"
-      class="map_menu__switch_buttons q-mb-md"
-    />
+    <DateSelector v-model="dateInterval" class="q-mb-md"/>
+<!--    <p class="map_menu__title mb mt">{{ $t("mapMenu.show") }}</p>-->
+<!--    <SwitchButtons-->
+<!--      v-model="rentShowSettings"-->
+<!--      class="map_menu__switch_buttons q-mb-md"-->
+<!--    />-->
   </nav>
 </template>
 
 <script>
 import SelectComponent from "components/Core/MapMenu/SelectComponent/SelectComponent";
 import DateSelector from "components/Core/MapMenu/DateSelector/DateSelector";
-import SwitchButtons from "components/Core/MapMenu/SwitchButtons/SwitchButtons";
+
 
 export default {
   name: "MapMenu",
   components: {
     SelectComponent,
     DateSelector,
-    SwitchButtons
   },
   async mounted() {
     await this.$nextTick();
