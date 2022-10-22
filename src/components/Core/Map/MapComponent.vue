@@ -50,9 +50,74 @@ export default {
             "circle-color": 'rgb(178,24,43)',
             "circle-radius": 3,
             "circle-stroke-width": 1,
-            "circle-stroke-color": "#ffffff"
+            "circle-stroke-color": "#ffffff",
           }
+
         });
+        this.map.addLayer(
+          {
+            'id': 'bike_stations-heatmaptransparent',
+            'type': 'heatmap',
+            'source': 'bike_stations',
+            'minzoom': 9.5,
+            'paint': {
+              'heatmap-weight': [
+                'interpolate',
+                ['linear'],
+                ['get', 'Value'],
+                0,
+                0,
+                1000000,
+                220
+              ],
+              'heatmap-intensity': [
+                'interpolate',
+                ['linear'],
+                ['zoom'],
+                0,
+                1,
+                9.5,
+                3
+              ],
+              'heatmap-color': [
+                'interpolate',
+                ['linear'],
+                ['heatmap-density'],
+                0,
+                'rgba(33,102,172,0)',
+                0.2,
+                'rgb(103,169,207)',
+                0.4,
+                'rgb(209,229,240)',
+                0.6,
+                'rgb(253,219,199)',
+                0.8,
+                'rgb(239,138,98)',
+                1,
+                'rgb(178,24,43)'
+              ],
+              'heatmap-radius': [
+                'interpolate',
+                ['linear'],
+                ['zoom'],
+                0,
+                2,
+                10,
+                20
+              ],
+              'heatmap-opacity': [
+                'interpolate',
+                ['linear'],
+                ['zoom'],
+                7,
+                0.5,
+                20,
+                0
+              ]
+            }
+          },
+          'waterway-label'
+        );
         this.map.addLayer(
           {
             'id': 'bike_stations-heat',
