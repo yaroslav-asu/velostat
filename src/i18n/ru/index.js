@@ -41,19 +41,19 @@ export default {
   feedBack: "Обратная связь",
 
   footer: {
-    contact: "Связаться с нами",
-    download: "Скачать данные"
+    contact: "Связаться с нами"
   },
   buttons: {
-    download: "Скачать данные",
     send: "Отправить"
   },
   errors: {
     requiredEmailOrTelegram: "Необходимо указать email или telegram",
-    required: "Обязательное поле",
+    required: "Обязательное поле"
   },
   name: "Имя",
   emailOrTelegram: "Email или Telegram",
   message: "Сообщение",
-  subject: 'Тема',
+  subject: "Тема",
+  downloadData: "Скачать данные",
+  dataExample: "Пример данных",
 };

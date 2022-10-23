@@ -1,9 +1,12 @@
 <template>
   <footer class="footer" id="footer">
     <div class="footer__container limiter flex justify-center items-center q-py-md">
-      <a class="footer__link" id="download_data">
-        {{ $t("footer.download") }}
-      </a>
+      <div
+        class="footer__link"
+        @click="$emit('openDownloadDataForm')"
+      >
+        {{ $t("downloadData") }}
+      </div>
 
       <div class="footer__link q-mx-md text-center">
         <div
@@ -31,11 +34,9 @@ export default {
 .footer {
   background-color: $section-grey;
 }
-
-.contact-us {
-  transition: color 0.3s;
+.footer__link{
   cursor: pointer;
-
+  transition: color 0.3s;
   &:hover {
     color: $highlight;
   }

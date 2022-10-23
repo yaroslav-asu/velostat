@@ -83,7 +83,7 @@ export default {
         this.$refs.resizable.style.width = this.resizableSize.width + "px";
         this.$refs.resizable.style.height = this.resizableSize.height + "px";
         this.$refs.resizable.style.top = `${window.scrollY + parentPos.top}px`;
-        this.$refs.resizable.style.left = `${window.scrollX + parentPos.left}px`;
+        this.$refs.resizable.style.left = `${window.scrollX + parentPos.left - 8}px`;
       }, 0);
 
       setTimeout(() => {

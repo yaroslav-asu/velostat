@@ -6,7 +6,7 @@
 
 <script>
 // import LoadingComponent from "components/LoadingAnimation/LoadingAnimation";
-import ContactForm from "components/Core/ContactForm/ContactForm";
+import ContactForm from "components/Core/Forms/ContactForm/ContactForm";
 export default {
   name: "TestLayout",
   components: {

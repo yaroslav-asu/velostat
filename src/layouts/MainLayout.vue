@@ -4,12 +4,17 @@
     <GreetingSection />
     <WhySection />
     <MapSection />
+    <DownloadData
+      v-if="downloadDataFormState"
+      @close="downloadDataFormState = false"
+    />
     <ContactForm
-      v-if="showContactForm"
-      @close="showContactForm = false"
+      v-if="contactFormState"
+      @close="contactFormState = false"
     />
     <FooterComponent
-      @openContactForm="a"
+      @openContactForm="showContactForm"
+      @openDownloadDataForm="showDownloadDataForm"
     />
   </q-layout>
 </template>
@@ -21,7 +26,8 @@ import WhySection from "src/sections/WhySection";
 import MapSection from "src/sections/MapSection";
 import FooterComponent from "components/Footer/FooterComponent";
 import NextSectionButton from "components/NextSectionButton/NextSectionButton";
-import ContactForm from "components/Core/ContactForm/ContactForm";
+import ContactForm from "components/Core/Forms/ContactForm/ContactForm";
+import DownloadData from "components/Core/Forms/DownloadData/DownloadDataForm";
 
 export default defineComponent({
   name: "MainLayout",
@@ -31,17 +37,23 @@ export default defineComponent({
     WhySection,
     MapSection,
     FooterComponent,
-    ContactForm
+    ContactForm,
+    DownloadData
   },
   data() {
     return {
-      showContactForm: false
+      contactFormState: false,
+      downloadDataFormState: false
     };
   },
   methods: {
-    a() {
-      console.log("a");
-      this.showContactForm = true;
+    showDownloadDataForm() {
+      this.downloadDataFormState = true;
+      this.contactFormState = false;
+    },
+    showContactForm() {
+      this.contactFormState = true;
+      this.downloadDataFormState = false;
     }
   }
 });
