@@ -62,10 +62,9 @@ export default {
       }
     },
     async setCurrentYear() {
-      let today = new Date();
       this.calendarDate = {
-        from: `${today.getFullYear()}/01/01`,
-        to: `${today.getFullYear()}/12/31`,
+        from: `2021/01/01`,
+        to: `2022/12/31`,
       };
     },
     setCurrentMonth() {
